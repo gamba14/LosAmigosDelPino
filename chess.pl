@@ -112,9 +112,11 @@ amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
-% TODO amenaza peon y caballo. Peon--> DesplazamientoFila=DesplazamientoColumna between -1 1, pero no 
-% puede moverse para atras, eso jode mucho. 
-% Aparte por la numeracion del tablero la logica en la parte superior e inferior puede ser conflictiva
+amenaza(peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+	between(-1,1,DesplazamientoColumna),
+	Columna is ColumnaAmenazada + DesplazamientoColumna,
+	Fila is FilaAmenazada - 1,
+	Columna \= ColumnaAmenazada.
 
 % -- 2--
 cuantosAmenaza(Pieza,Fila,Columna,CantidadAmenazados) :-
