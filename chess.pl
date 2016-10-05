@@ -9,23 +9,24 @@
 % 1 |#|_|#|_|#|_|#|_|
 %    a b c d e f g h
 
-
-esCasillero(Fila,Columna) :- 
-	between(1,8,Fila),
-	between(1,8,Columna).
 esPieza(rey).
 esPieza(torre).
 esPieza(alfil).
 esPieza(reina).
 esPieza(peon).
 esPieza(caballo).
+
+esCasillero(Fila,Columna) :- 
+	between(1,8,Fila),
+	between(1,8,Columna).
+
 % Diagonal descendente desde una casilla inicial 
 diagonalIzqADer(FilInicial,ColInicial,FilaDestino,ColDestino):-
 	esCasillero(FilInicial,ColInicial),
 	esCasillero(FilaDestino,ColDestino),
 	between(-8,8,Desplazamiento),
-	FilaDestino is FilInicial+Desplazamiento,
-	ColDestino is ColInicial+Desplazamiento.
+	FilaDestino is FilInicial + Desplazamiento,
+	ColDestino is ColInicial + Desplazamiento.
 
 % Diagonal ascendente desde una casilla inicial 
 % no son ascendentes ni descendentes porque no tienen sentido, solo direccion. Me resulta menos confuso elegir por el orden en el que arrojan los resultados.
@@ -40,9 +41,11 @@ diagonalDerAIzq(FilInicial,ColInicial,FilaDestino,ColDestino):-
 casilleros(F,C,FA,CA) :-
 	esCasillero(F,C),
 	esCasillero(FA,CA).
+
 casillerosDistintos(F,C,FA,CA):-
 	casilleros(F,C,FA,CA),
 	not(mismoCasillero(F,C,FA,CA)).
+
 mismoCasillero(F,C,F,C).
 
 % -- 1 --
@@ -62,8 +65,10 @@ amenaza(torre,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
 	perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 	% no es muy expresivo, pero las lineas perpendiculares que convergen en la casilla origen son las amenazadas en el tablero, nombre mejor?
+
 perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	estaEnLaMismaLinea(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
 perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	estaEnLaMismaColumna(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
@@ -74,16 +79,20 @@ estaEnLaMismaColumna(_,C,_,C). % no es determinista por el contexto de aplicacio
 amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
 	estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
 estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	diagonalDerAIzq(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
 estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	diagonalIzqADer(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
 % amenaza reina
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(rey,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(torre,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
@@ -108,9 +117,11 @@ movimientoKasparov(Pieza,FilaOptima,ColumnaOptima)  :-
 	esCasillero(FilaOptima,ColumnaOptima),
 	cuantosAmenaza(Pieza,FilaOptima,ColumnaOptima,CantidadAmenazados),
 	ningunoLaSupera(Pieza,CantidadAmenazados).
+
 ningunoLaSupera(Pieza, CantidadAmenazados) :-
 	esPieza(Pieza),
 	forall(cuantosAmenaza(Pieza,_,_,OtraCantidadAmenazados),noSupera(OtraCantidadAmenazados,CantidadAmenazados)).
+	
 noSupera(UnaCantidad,CantidadMaxima) :-
 	UnaCantidad =< CantidadMaxima.
 
