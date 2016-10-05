@@ -9,6 +9,10 @@
 % 1 |#|_|#|_|#|_|#|_|
 %    a b c d e f g h
 
+% Se modelaran las piezas sin tener en cuenta su color (salvo los peones)
+% Todos los peones empiezan de la fila 2 como si fueran blancas
+% NO se modelaran los movimientos 'peon al paso' ni 'enroque' 
+
 esPieza(rey).
 esPieza(torre).
 esPieza(alfil).
