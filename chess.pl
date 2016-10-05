@@ -65,7 +65,6 @@ casillerosDistintos(F,C,FA,CA):-
 mismoCasillero(F,C,F,C).
 
 % -- 1 --
-% amenaza Rey
 
 enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     between(-1,1,DesplazamientoFila),
@@ -89,7 +88,7 @@ estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	diagonalIzqADer(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
-
+% amenaza Rey
 amenaza(rey,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
 	enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna).
