@@ -65,6 +65,9 @@ casillerosDistintos(F,C,FA,CA):-
 mismoCasillero(F,C,F,C).
 
 % -- 1 --
+atrasAdelante(1).
+atrasAdelante(-1).
+
 
 enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     between(-1,1,DesplazamientoFila),
@@ -115,10 +118,9 @@ amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
 amenaza(peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
-	between(-1,1,DesplazamientoColumna),
+	atrasAdelante(DesplazamientoColumna),
 	Columna is ColumnaAmenazada + DesplazamientoColumna,
-	Fila is FilaAmenazada - 1,
-	Columna \= ColumnaAmenazada.
+	Fila is FilaAmenazada - 1.
 
 % -- 2--
 cuantosAmenaza(Pieza,Fila,Columna,CantidadAmenazados) :-
