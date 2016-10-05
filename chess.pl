@@ -9,10 +9,21 @@
 % 1 |#|_|#|_|#|_|#|_|
 %    a b c d e f g h
 
+% Se usara el tablero como se plantea en el ejercio:
+% 1 |_|#|_|#|_|#|_|#|
+% 2 |#|_|#|_|#|_|#|_|
+% 3 |_|#|_|#|_|#|_|#|
+% 4 |#|_|#|_|#|_|#|_|
+% 5 |_|#|_|#|_|#|_|#|
+% 6 |#|_|#|_|#|_|#|_|
+% 7 |_|#|_|#|_|#|_|#|
+% 8 |#|_|#|_|#|_|#|_|
+%    1 2 3 4 5 6 7 8
 % Se modelaran las piezas sin tener en cuenta su color (salvo los peones)
 % Todos los peones empiezan de la fila 2 como si fueran blancas
 % NO se modelaran los movimientos 'peon al paso' ni 'enroque' 
-% NO se aplica la regla "Los reyes nunca pueden estar uno al lado del otro"
+% NO se aplica la regla "Los reyes NUNCA pueden estar uno al lado del otro"
+
 
 esPieza(rey).
 esPieza(torre).
