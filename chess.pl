@@ -12,6 +12,7 @@
 % Se modelaran las piezas sin tener en cuenta su color (salvo los peones)
 % Todos los peones empiezan de la fila 2 como si fueran blancas
 % NO se modelaran los movimientos 'peon al paso' ni 'enroque' 
+% NO se aplica la regla "Los reyes nunca pueden estar uno al lado del otro"
 
 esPieza(rey).
 esPieza(torre).
