@@ -122,6 +122,14 @@ amenaza(peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
 	Columna is ColumnaAmenazada + DesplazamientoColumna,
 	Fila is FilaAmenazada - 1.
 
+% Usando la logica avanza 2 filas y  1 columnas (con la otra llega al mismo lugar)
+amenaza(caballo, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+	atrasAdelante(DireccionF),
+	atrasAdelante(DireccionC),
+	FilaAmenazada    is Fila    + 2 * DireccionF,
+	ColumnaAmenazada is Columna + 1 * DireccionC.
+
+
 % -- 2--
 cuantosAmenaza(Pieza,Fila,Columna,CantidadAmenazados) :-
 	esPieza(Pieza),
