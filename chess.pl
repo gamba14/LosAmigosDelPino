@@ -72,8 +72,8 @@ atrasAdelante(-1).
 enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     between(-1,1,DesplazamientoFila),
     between(-1,1,DesplazamientoColumna),
-    FilaAmenazada is Fila+DesplazamientoFila,
-    ColumnaAmenazada is Columna+DesplazamientoColumna. % puede no sumar lo mismo 
+    FilaAmenazada is Fila + DesplazamientoFila,
+    ColumnaAmenazada is Columna + DesplazamientoColumna. % puede no sumar lo mismo 
 
 
 perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
@@ -151,7 +151,7 @@ movimientoKasparov(Pieza,FilaOptima,ColumnaOptima)  :-
 ningunoLaSupera(Pieza, CantidadAmenazados) :-
 	esPieza(Pieza),
 	forall(cuantosAmenaza(Pieza,_,_,OtraCantidadAmenazados),noSupera(OtraCantidadAmenazados,CantidadAmenazados)).
-	
+
 noSupera(UnaCantidad,CantidadMaxima) :-
 	UnaCantidad =< CantidadMaxima.
 
@@ -166,8 +166,10 @@ puedenEstar(UnaPieza,Fila,Columna,PiezaDistinta,FilaDistinta,ColumnaDistinta) :-
 sonPiezasDistintas(P,Q) :-
 	sonPiezas(P,Q),
 	not(mismaPieza(P,Q)).
+
 sonPiezas(P,Q) :-
 	esPieza(P), esPieza(Q).
+
 mismaPieza(P,P).
 
 % -- 4 --
