@@ -66,9 +66,6 @@ mismoCasillero(F,C,F,C).
 
 % -- 1 --
 % amenaza Rey
-amenaza(rey,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
-	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
-	enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna).
 
 enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     between(-1,1,DesplazamientoFila),
@@ -76,11 +73,6 @@ enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     FilaAmenazada is Fila+DesplazamientoFila,
     ColumnaAmenazada is Columna+DesplazamientoColumna. % puede no sumar lo mismo 
 
-% amenaza torre
-amenaza(torre,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
-	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
-	perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
-	% no es muy expresivo, pero las lineas perpendiculares que convergen en la casilla origen son las amenazadas en el tablero, nombre mejor?
 
 perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	estaEnLaMismaLinea(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
@@ -91,16 +83,27 @@ perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 estaEnLaMismaLinea(F,_,F,_).
 estaEnLaMismaColumna(_,C,_,C). % no es determinista por el contexto de aplicacion (reducido y accesorio)
 
-% amenaza alfil
-amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
-	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
-	estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
-
 estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	diagonalDerAIzq(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
 estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	diagonalIzqADer(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+
+
+amenaza(rey,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
+	enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna).
+
+% amenaza torre
+amenaza(torre,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
+	perpendicular(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
+	% no es muy expresivo, pero las lineas perpendiculares que convergen en la casilla origen son las amenazadas en el tablero, nombre mejor?
+
+% amenaza alfil
+amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
+	estaEnDiagonal(Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
 % amenaza reina
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
