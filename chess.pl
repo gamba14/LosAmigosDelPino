@@ -27,10 +27,10 @@
 
 
 esPieza(rey).
-esPieza(torre).
-esPieza(alfil).
 esPieza(reina).
+esPieza(torre).
 esPieza(caballo).
+esPieza(alfil).
 esPieza(peonBlanco).
 esPieza(peonNegro).
 
