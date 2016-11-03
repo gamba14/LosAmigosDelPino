@@ -81,6 +81,9 @@ mismoCasillero(F,C,F,C).
 atrasAdelante(1).
 atrasAdelante(-1).
 
+variacionAvanceCaballos(2,1).
+variacionAvanceCaballos(1,2).
+
 
 enPerimetro(FilaAmenazada,ColumnaAmenazada,Fila,Columna) :-
     between(-1,1,DesplazamientoFila),
@@ -146,12 +149,15 @@ amenaza(Peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
 	Columna is ColumnaAmenazada + DesplazamientoColumna,
 	Fila is FilaAmenazada - 1.
 
+% amenaza caballo
 % Usando la logica avanza 2 filas y  1 columnas (con la otra llega al mismo lugar)
 amenaza(caballo, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
 	atrasAdelante(DireccionF),
 	atrasAdelante(DireccionC),
-	FilaAmenazada    is Fila    + 2 * DireccionF,
-	ColumnaAmenazada is Columna + 1 * DireccionC.
+	variacionAvanceCaballos(AvanceF, AvanceC),
+	FilaAmenazada    is Fila    + (AvanceF * DireccionF),
+	ColumnaAmenazada is Columna + (AvanceC * DireccionC).
 
 
 % -- 2--
