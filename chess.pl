@@ -30,8 +30,20 @@ esPieza(rey).
 esPieza(torre).
 esPieza(alfil).
 esPieza(reina).
-esPieza(peon).
 esPieza(caballo).
+esPieza(peonBlanco).
+esPieza(peonNegro).
+
+esPeon(peonBlanco).
+esPeon(peonNegro).
+
+esBlancas(peonBlanco).
+esNegras(peonNegro).
+
+esPeonBlanco(Peon) :- esPeon(Peon), esBlancas(Peon).
+esPeonNegro(Peon) :- esPeon(Peon), esNegras(Peon).
+
+
 
 esCasillero(Fila,Columna) :- 
 	between(1,8,Fila),
@@ -118,7 +130,18 @@ amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 amenaza(reina,Fila,Columna,FilaAmenazada,ColumnaAmenazada) :-
 	amenaza(alfil,Fila,Columna,FilaAmenazada,ColumnaAmenazada).
 
-amenaza(peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+
+% amenaza peon
+amenaza(Peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+	esPeonBlanco(Peon),
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
+	atrasAdelante(DesplazamientoColumna),
+	Columna is ColumnaAmenazada + DesplazamientoColumna,
+	Fila is FilaAmenazada + 1.
+
+amenaza(Peon, Fila, Columna, FilaAmenazada, ColumnaAmenazada) :-
+	esPeonNegro(Peon),
+	casillerosDistintos(Fila,Columna,FilaAmenazada,ColumnaAmenazada),
 	atrasAdelante(DesplazamientoColumna),
 	Columna is ColumnaAmenazada + DesplazamientoColumna,
 	Fila is FilaAmenazada - 1.
