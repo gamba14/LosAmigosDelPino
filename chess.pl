@@ -206,6 +206,8 @@ mismaPieza(P,P).
 ocupa(reina,5,5).
 ocupa(torre,2,1).
 ocupa(torre,3,4).
+ocupa(peonBlanco,7,1).
+ocupa(peonNegro,2,1).
 
 % puedeEstar(Pieza,Fila,Columna) :- ocupa(Pieza,Fila,Columna).
 puedeEstar(Pieza, Fila, Columna) :-
