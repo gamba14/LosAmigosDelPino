@@ -20,7 +20,8 @@
 % 8 |#|_|#|_|#|_|#|_|
 %    1 2 3 4 5 6 7 8
 % Se modelaran las piezas sin tener en cuenta su color (salvo los peones)
-% Todos los peones empiezan de la fila 7 como si fueran blancas (avanzan hacia en direncion a 1)
+% Los peones blancos empiezan de la fila 7 y avanzan hacia en direncion a 1
+% Los peones nergos  empiezan de la fila 2 y avanzan hacia en direncion a 8
 % NO se modelaran los movimientos 'peon al paso' ni 'enroque' 
 % NO se aplica la regla "Los reyes NUNCA pueden estar uno al lado del otro"
 
